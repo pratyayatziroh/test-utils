@@ -1,13 +1,17 @@
-package com.ppx.testutils.core;
+package com.ppx.testutils.core.temp;
+
+import com.ppx.testutils.core.temp.FileCreator;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
 
 /**
  * @author Pratyay
  **/
 public class Flush {
     private FileCreator fileCreator;
+    private static final Logger LOGGER = Logger.getLogger(Flush.class.getName());
 
     public Flush(FileCreator fileCreator) {
         try {
@@ -21,7 +25,7 @@ public class Flush {
             System.out.println(path.concat(" flushed!"));
         }
         catch (Exception e){
-            System.out.println("flush failed!");
+            LOGGER.warning(e.getMessage());
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.ppx.testutils.core;
+package com.ppx.testutils.core.temp;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,12 +8,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 /**
  * @author Pratyay
  **/
 
 public class FileWriter<T> {
+    private static final Logger LOGGER = Logger.getLogger(FileWriter.class.getName());
     private final FileCreator fileCreator;
 
     public FileWriter(FileCreator fileCreator) {
@@ -29,7 +31,7 @@ public class FileWriter<T> {
                 String prettified = prettify(encodedData);
                 Files.write(Paths.get(path), prettified.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
             } catch (Exception e) {
-                System.out.println("could not write inside file!");
+                LOGGER.warning(e.getMessage());
             }
         });
     }

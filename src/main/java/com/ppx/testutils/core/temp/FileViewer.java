@@ -1,14 +1,15 @@
-package com.ppx.testutils.core;
+package com.ppx.testutils.core.temp;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 /**
  * @author Pratyay
  **/
 public class FileViewer {
-
+    private static final Logger LOGGER = Logger.getLogger(FileViewer.class.getName());
     private final FileCreator fileCreator;
 
     public FileViewer(FileCreator fileCreator) {
@@ -27,7 +28,7 @@ public class FileViewer {
                 process.waitFor();
             }
             catch (Exception e){
-                System.out.println("could not view file!");
+                LOGGER.warning(e.getMessage());
             }
         });
     }
