@@ -15,8 +15,7 @@ class FlowTest {
         FileViewer fileViewer = new FileViewer(fileCreator);
         fileCreator.newFile().join();
         ObjectMapper objectMapper = new ObjectMapper();
-        String data = objectMapper.writeValueAsString(new Person("Alex", 27, true, true));
-        fileWriter.write(data).join();
+        fileWriter.write(new Person("Jacob", 27, true, true)).join();
         fileViewer.view().join();
         new Flush(fileCreator);
     }
