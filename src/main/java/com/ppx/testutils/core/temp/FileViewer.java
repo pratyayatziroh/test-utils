@@ -1,5 +1,7 @@
 package com.ppx.testutils.core.temp;
 
+import com.ppx.testutils.common.Machine;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
@@ -16,19 +18,44 @@ public class FileViewer {
         this.fileCreator = fileCreator;
     }
 
-    public CompletableFuture<Void> view() {
+    public CompletableFuture<Void> view(Machine machine) {
         return CompletableFuture.runAsync(()->{
-            try {
-                Path absPath = Paths.get(fileCreator.getPath()).toAbsolutePath();
-                String path = absPath.toString().replace("/.", "");
-                String [] command = {"gedit", path};
-                System.out.println("opening file!");
-                ProcessBuilder processBuilder = new ProcessBuilder(command);
-                Process process = processBuilder.start();
-                process.waitFor();
-            }
-            catch (Exception e){
-                LOGGER.warning(e.getMessage());
+            Path absPath = Paths.get(fileCreator.getPath()).toAbsolutePath();
+            String path = absPath.toString().replace("/.", "");
+            System.out.println("opening file!");
+            switch (machine){
+                case LINUX_DESKTOP:
+                    try {
+                        String[] command = {"gedit", path};
+                        ProcessBuilder processBuilder = new ProcessBuilder(command);
+                        Process process = processBuilder.start();
+                        process.waitFor();
+                    }
+                    catch (Exception e){
+                        LOGGER.warning(e.getMessage());
+                    }
+
+                case WINDOWS:
+                    try {
+                        String[] command = {"notepad", path};
+                        ProcessBuilder processBuilder = new ProcessBuilder(command);
+                        Process process = processBuilder.start();
+                        process.waitFor();
+                    }
+                    catch (Exception e){
+                        LOGGER.warning(e.getMessage());
+                    }
+
+                case MAC:
+                    try {
+                        String[] command = {"open", "-e", path};
+                        ProcessBuilder processBuilder = new ProcessBuilder(command);
+                        Process process = processBuilder.start();
+                        process.waitFor();
+                    }
+                    catch (Exception e){
+                        LOGGER.warning(e.getMessage());
+                    }
             }
         });
     }
