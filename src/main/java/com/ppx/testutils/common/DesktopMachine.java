@@ -1,6 +1,6 @@
 package com.ppx.testutils.common;
 
-public enum Machine {
+public enum DesktopMachine {
     LINUX_DESKTOP,
     WINDOWS,
     MAC

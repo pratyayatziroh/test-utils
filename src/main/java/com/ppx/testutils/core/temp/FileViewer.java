@@ -1,6 +1,6 @@
 package com.ppx.testutils.core.temp;
 
-import com.ppx.testutils.common.Machine;
+import com.ppx.testutils.common.DesktopMachine;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,12 +18,12 @@ public class FileViewer {
         this.fileCreator = fileCreator;
     }
 
-    public CompletableFuture<Void> view(Machine machine) {
+    public CompletableFuture<Void> view(DesktopMachine desktopMachine) {
         return CompletableFuture.runAsync(()->{
             Path absPath = Paths.get(fileCreator.getPath()).toAbsolutePath();
             String path = absPath.toString().replace("/.", "");
             System.out.println("opening file!");
-            switch (machine){
+            switch (desktopMachine){
                 case LINUX_DESKTOP:
                     try {
                         String[] command = {"gedit", path};

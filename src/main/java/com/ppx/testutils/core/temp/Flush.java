@@ -1,6 +1,5 @@
 package com.ppx.testutils.core.temp;
 
-import com.ppx.testutils.core.temp.FileCreator;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,6 +8,7 @@ import java.util.logging.Logger;
 /**
  * @author Pratyay
  **/
+
 public class Flush {
     private FileCreator fileCreator;
     private static final Logger LOGGER = Logger.getLogger(Flush.class.getName());

@@ -10,7 +10,6 @@ import java.util.logging.Logger;
  **/
 public class FileCreator {
     private static final Logger LOGGER = Logger.getLogger(FileCreator.class.getName());
-
     private String path;
 
     public String getPath() {
@@ -21,6 +20,7 @@ public class FileCreator {
         this.path = "./".concat("test-output");
 
     }
+    
     public CompletableFuture<Void> newFile(){
         return CompletableFuture.runAsync(()->{
             create(path).thenAccept(v -> System.out.println("test file created!"));

@@ -41,6 +41,11 @@
             <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.ziroh</groupId>
+            <artifactId>notification-rest-client</artifactId>
+            <version>1.2-grp-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
